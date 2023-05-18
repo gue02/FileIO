@@ -8,31 +8,37 @@ import java.io.*;
 public class UsingBufferedReader {
     public static void main(String[] args) throws IOException {
 
-
         //-------------- Test reading 1 MB file. --------------------
+        if (args.length > 0) {
+            String fileName1 = args[0];
+            StopWatch.start();
 
-        StopWatch.start();
+            BufferedReader inputStream= new BufferedReader(new FileReader(fileName1));
+            while (inputStream.read()!=-1){}
 
-        BufferedReader inputStream= new BufferedReader(new FileReader(DumpDataWriter.input1MB));
-        while (inputStream.read()!=-1){}
-
-        long duration = StopWatch.stop();
-        System.out.println(duration + " milsec");
-        
-        inputStream.close();
-
+            long duration = StopWatch.stop();
+            System.out.println(duration + " milsec");
+            
+            inputStream.close();
+        } else {
+            System.out.println("Please provide a file name as a command line argument.");
+        }
 
         //-------------- Test reading 10 MB file. --------------------
+        if (args.length > 1) {
+            String fileName2 = args[1];
+            StopWatch.start();
 
-        StopWatch.start();
+            BufferedReader inputStream2= new BufferedReader(new FileReader(fileName2));
+            while (inputStream2.read()!=-1){}
 
-        BufferedReader inputStream2= new BufferedReader(new FileReader(DumpDataWriter.input10MB));
-        while (inputStream2.read()!=-1){}
+            long duration2 = StopWatch.stop();
+            System.out.println(duration2 + " milsec");
 
-        long duration2 = StopWatch.stop();
-        System.out.println(duration2 + " milsec");
-
-        inputStream2.close();
+            inputStream2.close();
+        }else {
+            System.out.println("Please provide a file name as a command line argument.");
+        }
 
         /*
         //-------------- Test reading 100 MB file. --------------------
